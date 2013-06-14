@@ -297,6 +297,12 @@ class Model(object):
     def values(self):
         return [self.get(k) for k in self._fields.iterkeys()]
 
+    def get(self, key, default=None):
+        try:
+            return self[key]
+        except KeyError:
+            return default
+
     def __getitem__(self, name):
         try:
             return getattr(self, name)
